@@ -18,37 +18,23 @@
     //fonction construct : en PHP est ce qu’on appelle un constructeur. C’est une méthode spéciale dans une classe qui est automatiquement appelée lorsqu’un objet est créé à partir de cette classe.
     function  __construct($name, $place, $startDate, $endDate,$CleaningOption)     { 
 
-        //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
-        //ici cela signifie la propriété name de cet objet
+      // utilisateur envoie ces valeurs
+		// temporairement "en dur"
+		$this->name = $name;
+		$this->place = $place;
+		$this->startDate = $startDate;
+		$this->endDate = $endDate;
+		$this->cleaningOption = $cleaningOption;
 
-        // Données saisies par l'utilis->name = "Enzo Ramon";
-        $this->place = "Paris 16";
+		$this->nightPrice = 1500;
 
-        // Création des objets DateTime pour les dates de début et de fin
-        $this->startDate = new DateTime("2025-04-25");
-        $this->endDate = new DateTime("2025-05-25");
+        // valeurs calculées automatiquement
+		$totalPrice = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24) * $this->nightPrice) + 5000;
 
-        // Prix par nuit
-        $this->nightprice = 1500;
-
-         // Option de nettoyage (peut être booléen ou chaîne, ici chaîne "True")
-        $this->CleaningOption = "True";
-
-        // Calcul automatique des valeurs
-         // On calcule la différence entre les dates en jours
-        $interval = $this->startDate->diff($this->endDate)->days;
-
-        // Prix total = (nombre de nuits * prix par nuit) + option ménage fixe à 5000
-        $totalPrice = ($interval * $this->nightprice) + 5000;
-
-        // Affectation du prix total
-        $this->totalPrice = $totalPrice;
-
-        // Date de réservation actuelle
-        $this->bookedAt = new DateTime();
-
-        // Statut de la réservation (ex : "CART", "CONFIRMED", etc.)
-        $this->status = "CART";
+		$this->totalPrice = $totalPrice;
+		$this->bookedAt = new DateTime();
+		$this->status = "CART";
+	}
 
 
         // Création d'une nouvelle instance de la classe Reservation avec les paramètres suivants :
@@ -63,6 +49,16 @@
         // Affichage de l'objet complet
         var_dump($this);
     }  
-}
+
+// objet basé sur la classe Reservation / instance de classe Reservation
+// il contient toutes les propriétés de la classe
+
+$name = "Enzo";
+$place = "Paris 16";
+$start = new DateTime('2025-04-04');
+$end = new DateTime('2025-04-05');
+$cleaning = false;
+
+$reservation = new Reservation($name , $place, $start, $end, $cleaning);
 
         ?>
