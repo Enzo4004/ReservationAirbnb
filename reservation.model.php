@@ -61,4 +61,19 @@ $cleaning = false;
 
 $reservation = new Reservation($name , $place, $start, $end, $cleaning);
 
-        ?>
+       
+       
+function cancel() {
+    // Vérifie si le statut de l'objet est "CART"
+    if ($this->status === "CART") {
+        // Si le statut est "CART", alors on le change en "CANCELED"
+        $this->status = "CANCELED";
+    }
+}
+
+       
+       
+       
+
+
+?>
