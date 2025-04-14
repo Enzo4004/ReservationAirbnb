@@ -2,8 +2,8 @@
 
 
 
-// Définition de la classe Reservation
-class Reservation {
+    // Définition de la classe Reservation
+    class Reservation {
     public $name;              // Nom du client
     public $place;             // Lieu de réservation
     public $startDate;         // Date de début
@@ -16,44 +16,53 @@ class Reservation {
 
 
     //fonction construct : en PHP est ce qu’on appelle un constructeur. C’est une méthode spéciale dans une classe qui est automatiquement appelée lorsqu’un objet est créé à partir de cette classe.
-    function  __construct() 
-        { 
+    function  __construct($name, $place, $startDate, $endDate,$CleaningOption)     { 
 
-            //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
-            //ici cela signifie la propriété name de cet objet
+        //$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
+        //ici cela signifie la propriété name de cet objet
 
-            // Données saisies par l'utilis->name = "Enzo Ramon";
-            $this->place = "Paris 16";
+        // Données saisies par l'utilis->name = "Enzo Ramon";
+        $this->place = "Paris 16";
 
-                // Création des objets DateTime pour les dates de début et de fin
-            $this->startDate = new DateTime("2025-04-25");
-            $this->endDate = new DateTime("2025-05-25");
+        // Création des objets DateTime pour les dates de début et de fin
+        $this->startDate = new DateTime("2025-04-25");
+        $this->endDate = new DateTime("2025-05-25");
 
-                // Prix par nuit
-            $this->nightprice = 1500;
+        // Prix par nuit
+        $this->nightprice = 1500;
 
-                        // Option de nettoyage (peut être booléen ou chaîne, ici chaîne "True")
-            $this->CleaningOption = "True";
+         // Option de nettoyage (peut être booléen ou chaîne, ici chaîne "True")
+        $this->CleaningOption = "True";
 
-            // Calcul automatique des valeurs
-            // On calcule la différence entre les dates en jours
-            $interval = $this->startDate->diff($this->endDate)->days;
+        // Calcul automatique des valeurs
+         // On calcule la différence entre les dates en jours
+        $interval = $this->startDate->diff($this->endDate)->days;
 
-            // Prix total = (nombre de nuits * prix par nuit) + option ménage fixe à 5000
-            $totalPrice = ($interval * $this->nightprice) + 5000;
+        // Prix total = (nombre de nuits * prix par nuit) + option ménage fixe à 5000
+        $totalPrice = ($interval * $this->nightprice) + 5000;
 
-            // Affectation du prix total
-            $this->totalPrice = $totalPrice;
+        // Affectation du prix total
+        $this->totalPrice = $totalPrice;
 
-            // Date de réservation actuelle
-            $this->bookedAt = new DateTime();
+        // Date de réservation actuelle
+        $this->bookedAt = new DateTime();
 
-            // Statut de la réservation (ex : "CART", "CONFIRMED", etc.)
-            $this->status = "CART";
+        // Statut de la réservation (ex : "CART", "CONFIRMED", etc.)
+        $this->status = "CART";
 
-            // Affichage de l'objet complet
-            var_dump($this);
+
+        // Création d'une nouvelle instance de la classe Reservation avec les paramètres suivants :
+        // $name           : nom du client ou de la réservation
+        // $place          : lieu de la réservation (ex: une chambre, une maison, etc.)
+        // $startDate      : date de début de la réservation
+        // $endDate        : date de fin de la réservation
+        // $CleaningOption : option de nettoyage choisie (ex: standard, premium, aucun)
+         $reservation = new Reservation($name, $place, $startDate, $endDate,$CleaningOption)
+        
+        
+        // Affichage de l'objet complet
+        var_dump($this);
     }  
 }
 
-?>
+        ?>
