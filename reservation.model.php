@@ -15,6 +15,8 @@ class Reservation {
     public $totalPrice;        // Prix total (à calculer)
 }
 
+
+    function  __construct() { 
 // Création d'une nouvelle réservation (Attention au nom de classe)
 $reservation = new Reservation();
 
@@ -50,6 +52,6 @@ $reservation->status = "CART";
 
 // Affichage de l'objet complet
 var_dump($reservation);
-
+}   
 
 ?>
