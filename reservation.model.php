@@ -45,7 +45,20 @@
         // $CleaningOption : option de nettoyage choisie (ex: standard, premium, aucun)
          $reservation = new Reservation($name, $place, $startDate, $endDate,$CleaningOption)
         
+         function cancel() {
+            // Vérifie si le statut de l'objet est "CART"
+            if ($this->status === "CART") {
+                // Si le statut est "CART", alors on le change en "CANCELED"
+                $this->status = "CANCELED";
+            }
+        }
         
+        $reservation->cancel();    
+               
+               
+        
+        // Affichage de l'objet complet
+        var_dump($this);
         
     }  
 
@@ -62,18 +75,5 @@ $reservation = new Reservation($name , $place, $start, $end, $cleaning);
 
        
        
-function cancel() {
-    // Vérifie si le statut de l'objet est "CART"
-    if ($this->status === "CART") {
-        // Si le statut est "CART", alors on le change en "CANCELED"
-        $this->status = "CANCELED";
-    }
-}
 
-$reservation->cancel();    
-       
-       
-
-// Affichage de l'objet complet
-var_dump($this);
 ?>
