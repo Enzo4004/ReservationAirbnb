@@ -18,6 +18,9 @@ class Reservation {
 //fonction construct : en PHP est ce qu’on appelle un constructeur. C’est une méthode spéciale dans une classe qui est automatiquement appelée lorsqu’un objet est créé à partir de cette classe.
  function  __construct() { 
 
+//$this fait référence à l'objet courant (celui qui est en train d'être utilisé)
+//ici cela signifie la propriété name de cet objet
+
 // Données saisies par l'utilis->name = "Enzo Ramon";
 $this->place = "Paris 16";
 
