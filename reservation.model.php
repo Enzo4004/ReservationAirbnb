@@ -46,8 +46,7 @@
          $reservation = new Reservation($name, $place, $startDate, $endDate,$CleaningOption)
         
         
-        // Affichage de l'objet complet
-        var_dump($this);
+        
     }  
 
 // objet basé sur la classe Reservation / instance de classe Reservation
@@ -71,9 +70,10 @@ function cancel() {
     }
 }
 
-       
+$reservation->cancel();    
        
        
 
-
+// Affichage de l'objet complet
+var_dump($this);
 ?>
