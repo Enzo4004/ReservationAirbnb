@@ -54,7 +54,20 @@
  		<button type="submit">Créer la réservation</button>
  
  	</form>
- 
+	 
+
+	 <?php 
+		// Vérifie si la variable $error n'est pas nulle (donc qu'une erreur existe)
+		if (!is_null($error)) { 
+		?>
+    	<!-- Si une erreur est présente, on affiche un message -->
+    	<p>La réservation n'a pas été effectuée : <?php echo $error; ?></p>
+		<?php 
+		// Fin de la condition
+} 
+?>
+
+
 	 <?php 
 // Vérifie si une réservation existe (n'est pas nulle)
 if (!is_null($reservation)) { 

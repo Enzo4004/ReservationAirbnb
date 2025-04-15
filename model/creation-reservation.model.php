@@ -28,6 +28,13 @@ class Reservation {
 	 * Initialise les propriétés principales de l'objet à partir des paramètres
 	 */
 	public function __construct($name, $place, $startDate, $endDate, $cleaningOption) {
+		
+		// Vérifie si la longueur du nom est inférieure à 2 caractères
+		if (strlen($name) < 2) {
+    
+			// Si oui, on lance une exception avec un message d’erreur
+			throw new Exception('Le nom doit comporter plus de deux caractères');
+		}
 
 		// Affectation des valeurs saisies par l'utilisateur
 		$this->name = $name;

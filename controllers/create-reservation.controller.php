@@ -8,6 +8,8 @@ require_once('../model/creation-Reservation.model.php');
 
 // Initialisation resa=null
 $reservation = null;
+// varibale error qui a pour valeur null        
+$error = null;
 
 // Vérification que le formulaire a bien été soumis en méthode POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -28,6 +30,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $cleaningOption = false;
     }
     
+    try {
+        // je créé une réservation : une instance de classe, en lui envoyant les données attendues
+        $reservation = new Reservation($name, $place, $startDate, $endDate, $cleaningOption);
+    } catch(Exception $e) {
+        $error = $e->getMessage();
+    }	
+
     // Création d'une nouvelle réservation avec les données fournies
     // On instancie un objet Reservation avec les paramètres récupérés
     $reservation = new Reservation($name, $place, $startDate, $endDate, $cleaningOption);
