@@ -69,41 +69,41 @@
 
 
 	 <?php 
-// Vérifie si une réservation existe (n'est pas nulle)
-if (!is_null($reservation)) { 
-?>
+		// Vérifie si une réservation existe (n'est pas nulle)
+		if (!is_null($reservation)) { 
+		?>
 
-<!-- Début du bloc d'affichage du récapitulatif -->
-<div>
-    <p>Récap de la réservation :</p>
+		<!-- Début du bloc d'affichage du récapitulatif -->
+		<div>
+    	<p>Récap de la réservation :</p>
 
-    <!-- Affiche le nom de la personne ayant réservé -->
-    <p>Nom : <?php echo $reservation->name; ?></p>
+    	<!-- Affiche le nom de la personne ayant réservé -->
+    	<p>Nom : <?php echo $reservation->name; ?></p>
 
-    <!-- Affiche le lieu de la réservation -->
-    <p>Lieu : <?php echo $reservation->place; ?></p>
+    	<!-- Affiche le lieu de la réservation -->
+    	<p>Lieu : <?php echo $reservation->place; ?></p>
 
-    <!-- Affiche les dates de début et de fin, formatées en jour-mois-année -->
-    <p>Dates : 
+    	<!-- Affiche les dates de début et de fin, formatées en jour-mois-année -->
+    	<p>Dates : 
         <?php echo $reservation->startDate->format('d-m-y'); ?> 
         / 
         <?php echo $reservation->endDate->format('d-m-y'); ?>
-    </p>
+    	</p>
 
-    <!-- Affiche le prix total de la réservation -->
-    <p>Prix total : <?php echo $reservation->totalPrice; ?></p>
+   		<!-- Affiche le prix total de la réservation -->
+    	<p>Prix total : <?php echo $reservation->totalPrice; ?></p>
 
-    <!-- Affiche "oui" si l'option ménage est activée, sinon "non" -->
-    <p>Option de ménage ? : 
+    	<!-- Affiche "oui" si l'option ménage est activée, sinon "non" -->
+    	<p>Option de ménage ? : 
         <?php echo $reservation->cleaningOption ? "oui" : "non"; ?>
-    </p>
-</div>
+    	</p>
+		</div>
 
 
-<?php 
+		<?php 
 
 } 
-?>
+	?>
 
  
  </main>

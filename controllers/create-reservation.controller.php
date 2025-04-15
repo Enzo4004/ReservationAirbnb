@@ -5,6 +5,8 @@ require_once('../config.php');
 
 // Inclusion du fichier contenant le modèle de création de réservation
 require_once('../model/creation-Reservation.model.php');
+//Inclusion du fichiee contenant le systeme d'enregistrement des réservations .
+require_once('../model/Reservation.repository.php');
 
 // Initialisation resa=null
 $reservation = null;
@@ -33,6 +35,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     try {
         // je créé une réservation : une instance de classe, en lui envoyant les données attendues
         $reservation = new Reservation($name, $place, $startDate, $endDate, $cleaningOption);
+        
+        // Appelle la fonction persistReservation en lui passant l'objet $reservation
+        // Cette fonction va enregistrer la réservation dans la session PHP,et permet de me rtouver plus facilement.
+        persistReservation($reservation);
+    
+    
     } catch(Exception $e) {
         $error = $e->getMessage();
     }	
