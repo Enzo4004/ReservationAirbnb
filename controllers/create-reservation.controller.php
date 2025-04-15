@@ -6,8 +6,8 @@ require_once('../config.php');
 // Inclusion du fichier contenant le modèle de création de réservation
 require_once('../model/creation-Reservation.model.php');
 
-// Initialisation d'un message vide, qui sera affiché à l'utilisateur après la réservation
-$message = "";
+// Initialisation resa=null
+$reservation = null;
 
 // Vérification que le formulaire a bien été soumis en méthode POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {

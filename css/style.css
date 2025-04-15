@@ -1,0 +1,112 @@
+    /* ===== Global styles ===== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Header styles ===== */
+header {
+    background-color: #4a90e2;
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+/* ===== Main content ===== */
+main {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== Form styles ===== */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+label {
+    display: flex;
+    flex-direction: column;
+    font-weight: 500;
+    font-size: 15px;
+    color: #444;
+}
+
+input[type="text"],
+input[type="date"],
+select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 15px;
+    margin-top: 5px;
+    transition: border 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus,
+select:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+input[type="checkbox"] {
+    margin-top: 10px;
+    transform: scale(1.2);
+}
+
+/* ===== Submit button ===== */
+button[type="submit"] {
+    padding: 12px 20px;
+    background-color: #4a90e2;
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #357abd;
+}
+
+/* ===== Reservation recap styles ===== */
+div {
+    margin-top: 40px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #f9f9ff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+div p:first-child {
+    font-weight: bold;
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+div p {
+    font-size: 16px;
+    margin: 8px 0;
+}
