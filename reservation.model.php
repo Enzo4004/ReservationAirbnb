@@ -53,14 +53,39 @@
             }
         }
         
-        $reservation->cancel();    
-               
-               
+        $reservation->cancel();
         
-        // Affichage de l'objet complet
-        var_dump($this);
         
-    }  
+               //Paiment 
+        function paid()
+        {
+            if ($this->status === "CART") { // méthode de réservation par carte
+                $this->status = "PAID"; // methode de paiement si carte
+                $this->paid = new DateTime(); // date de paiement
+            }
+        }
+            //Commentaires d'annulation
+       function leaveComment($comment, $commentDate)
+        {
+            if ($this->status === "PAID") { // méthode de réservation par CART 
+                $this->status = "COMMENT"; // methode de commentaire pour CART 
+                $this->comment = $comment; // commentaire de réservation
+            }
+        }
+    }             
+  
+
+        //methode pour chnager le statut de la résa 
+         function cancel()
+         {
+            if ($this->  status==="CART"){ //paiment par CART 
+                $this-> status === " CANCELLED";//Annulation en carte uniquement 
+                $this-> cancelDate = New DateTime(); //date de l'annulation de la résa 
+
+            }
+         }
+        
+      
 
 // objet basé sur la classe Reservation / instance de classe Reservation
 // il contient toutes les propriétés de la classe
@@ -74,6 +99,8 @@ $cleaning = false;
 $reservation = new Reservation($name , $place, $start, $end, $cleaning);
 
        
-       
+           
+        // Affichage de l'objet complet
+        var_dump($this);  
 
 ?>
