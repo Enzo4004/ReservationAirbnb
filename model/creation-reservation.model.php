@@ -1,6 +1,7 @@
 <?php
 
-class Reservation {
+class Reservation
+{
 
 	// Informations de la réservation, saisies par l'utilisateur
 	public $name;             // Nom de la personne qui réserve
@@ -27,11 +28,12 @@ class Reservation {
 	 * Constructeur : appelé automatiquement lors de l’instanciation avec `new Reservation(...)`
 	 * Initialise les propriétés principales de l'objet à partir des paramètres
 	 */
-	public function __construct($name, $place, $startDate, $endDate, $cleaningOption) {
-		
+	public function __construct($name, $place, $startDate, $endDate, $cleaningOption)
+	{
+
 		// Vérifie si la longueur du nom est inférieure à 2 caractères
 		if (strlen($name) < 2) {
-    
+
 			// Si oui, on lance une exception avec un message d’erreur
 			throw new Exception('Le nom doit comporter plus de deux caractères');
 		}
@@ -48,7 +50,7 @@ class Reservation {
 
 		// Calcul du prix total : nombre de nuits * prix par nuit + frais fixes (ex. : ménage)
 		$totalPrice = (
-			($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) 
+			($this->endDate->getTimestamp() - $this->startDate->getTimestamp())
 			/ (3600 * 24)  // conversion des secondes en jours
 			* $this->nightPrice
 		) + 5000; // 5000 est ici un montant fixe ajouté (ex: pour le nettoyage)
@@ -66,7 +68,8 @@ class Reservation {
 	 * Méthode pour annuler une réservation.
 	 * Seules les réservations au statut "CART" peuvent être annulées.
 	 */
-	public function cancel() {
+	public function cancel()
+	{
 		if ($this->status === "CART") {
 			$this->status = "CANCELED";
 			$this->canceledAt = new DateTime(); // date actuelle
@@ -77,7 +80,8 @@ class Reservation {
 	 * Méthode pour valider le paiement d’une réservation.
 	 * Change le statut à "PAID" et enregistre la date de paiement.
 	 */
-	public function pay() {
+	public function pay()
+	{
 		if ($this->status === 'CART') {
 			// On simule un paiement ici
 			$this->status = "PAID";
@@ -89,11 +93,11 @@ class Reservation {
 	 * Méthode pour laisser un commentaire après paiement.
 	 * Seules les réservations "PAID" peuvent recevoir un commentaire.
 	 */
-	public function leaveComment($userComment) {
+	public function leaveComment($userComment)
+	{
 		if ($this->status === "PAID") {
 			$this->comment = $userComment;
 			$this->commentedAt = new DateTime(); // date actuelle
 		}
 	}
-
 }

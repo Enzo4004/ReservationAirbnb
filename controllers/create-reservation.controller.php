@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 // Inclusion du fichier de configuration (connexion à la base de données, constantes, etc.)
 require_once('../config.php');
@@ -31,19 +31,24 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else {
         $cleaningOption = false;
     }
-    
+
     try {
         // je créé une réservation : une instance de classe, en lui envoyant les données attendues
         $reservation = new Reservation($name, $place, $startDate, $endDate, $cleaningOption);
-        
+
         // Appelle la fonction persistReservation en lui passant l'objet $reservation
         // Cette fonction va enregistrer la réservation dans la session PHP,et permet de me rtouver plus facilement.
         persistReservation($reservation);
-    
-    
-    } catch(Exception $e) {
+    } catch (Exception $e) {
         $error = $e->getMessage();
-    }	
+    }
+
+
+    // Appelle la fonction findReservationForUser() pour récupérer la réservation stockée en session,
+    // et la stocke dans la variable $reservationForUser pour l'utiliser plus loin dans le code
+    $reservationForUser = findReservationForUser();
+
+
 
     // Création d'une nouvelle réservation avec les données fournies
     // On instancie un objet Reservation avec les paramètres récupérés
