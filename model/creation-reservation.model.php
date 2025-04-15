@@ -69,7 +69,7 @@
         {
             if ($this->status === "PAID") { // méthode de réservation par CART 
                 $this->status = "COMMENT"; // methode de commentaire pour CART 
-                $this->comment = $comment; // commentaire de réservation
+                $this->comment = new DateTime(); // commentaire de réservation
             }
         }
     }             
