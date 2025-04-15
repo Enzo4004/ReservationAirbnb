@@ -1,106 +1,92 @@
 <?php
 
+class Reservation {
 
+	// Informations de la réservation, saisies par l'utilisateur
+	public $name;             // Nom de la personne qui réserve
+	public $place;            // Lieu de réservation
+	public $startDate;        // Date de début de la réservation (objet DateTime)
+	public $endDate;          // Date de fin de la réservation (objet DateTime)
+	public $cleaningOption;   // Option de nettoyage (booléen : true/false)
 
-    // Définition de la classe Reservation
-    class Reservation {
-    public $name;              // Nom du client
-    public $place;             // Lieu de réservation
-    public $startDate;         // Date de début
-    public $endDate;           // Date de fin
-    public $nightprice;        // Prix par nuit
-    public $status;            // Statut de la réservation
-    public $bookedAt;          // Date de réservation
-    public $CleaningOption;    // Option de nettoyage
-    public $totalPrice;        // Prix total (à calculer)
+	// Prix et état de la réservation
+	public $nightPrice;       // Prix par nuit (fixé ici à 1000)
+	public $totalPrice;       // Prix total de la réservation (calculé)
+	public $status;           // Statut actuel de la réservation (ex. : "CART", "PAID", "CANCELED")
 
+	// Dates liées au processus de réservation
+	public $bookedAt;         // Date de création de la réservation
+	public $canceledAt;       // Date d'annulation (si applicable)
+	public $paidAt;           // Date de paiement (si applicable)
 
-    //fonction construct : en PHP est ce qu’on appelle un constructeur. C’est une méthode spéciale dans une classe qui est automatiquement appelée lorsqu’un objet est créé à partir de cette classe.
-    function  __construct($name, $place, $startDate, $endDate,$CleaningOption)     { 
+	// Commentaire laissé par l'utilisateur
+	public $comment;          // Texte du commentaire
+	public $commentedAt;      // Date du commentaire
 
-      // utilisateur envoie ces valeurs
-		// temporairement "en dur"
+	/**
+	 * Constructeur : appelé automatiquement lors de l’instanciation avec `new Reservation(...)`
+	 * Initialise les propriétés principales de l'objet à partir des paramètres
+	 */
+	public function __construct($name, $place, $startDate, $endDate, $cleaningOption) {
+
+		// Affectation des valeurs saisies par l'utilisateur
 		$this->name = $name;
 		$this->place = $place;
 		$this->startDate = $startDate;
 		$this->endDate = $endDate;
 		$this->cleaningOption = $cleaningOption;
 
-		$this->nightPrice = 1500;
+		// Prix fixe par nuit (peut être modifié plus tard si besoin)
+		$this->nightPrice = 1000;
 
-        // valeurs calculées automatiquement
-		$totalPrice = (($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) / (3600 * 24) * $this->nightPrice) + 5000;
+		// Calcul du prix total : nombre de nuits * prix par nuit + frais fixes (ex. : ménage)
+		$totalPrice = (
+			($this->endDate->getTimestamp() - $this->startDate->getTimestamp()) 
+			/ (3600 * 24)  // conversion des secondes en jours
+			* $this->nightPrice
+		) + 5000; // 5000 est ici un montant fixe ajouté (ex: pour le nettoyage)
 
 		$this->totalPrice = $totalPrice;
+
+		// Date de réservation : maintenant
 		$this->bookedAt = new DateTime();
+
+		// Statut initial de la réservation
 		$this->status = "CART";
 	}
 
+	/**
+	 * Méthode pour annuler une réservation.
+	 * Seules les réservations au statut "CART" peuvent être annulées.
+	 */
+	public function cancel() {
+		if ($this->status === "CART") {
+			$this->status = "CANCELED";
+			$this->canceledAt = new DateTime(); // date actuelle
+		}
+	}
 
-        // Création d'une nouvelle instance de la classe Reservation avec les paramètres suivants :
-        // $name           : nom du client ou de la réservation
-        // $place          : lieu de la réservation (ex: une chambre, une maison, etc.)
-        // $startDate      : date de début de la réservation
-        // $endDate        : date de fin de la réservation
-        // $CleaningOption : option de nettoyage choisie (ex: standard, premium, aucun)
-         $reservation = new Reservation($name, $place, $startDate, $endDate,$CleaningOption)
-        
-         function cancel() {
-            // Vérifie si le statut de l'objet est "CART"
-            if ($this->status === "CART") {
-                // Si le statut est "CART", alors on le change en "CANCELED"
-                $this->status = "CANCELED";
-            }
-        }
-        
-        $reservation->cancel();
-        
-        
-               //Paiment 
-        function paid()
-        {
-            if ($this->status === "CART") { // méthode de réservation par carte
-                $this->status = "PAID"; // methode de paiement si carte
-                $this->paid = new DateTime(); // date de paiement
-            }
-        }
-            //Commentaires d'annulation
-       function leaveComment($comment, $commentDate)
-        {
-            if ($this->status === "PAID") { // méthode de réservation par CART 
-                $this->status = "COMMENT"; // methode de commentaire pour CART 
-                $this->comment = new DateTime(); // commentaire de réservation
-            }
-        }
-    }             
-  
+	/**
+	 * Méthode pour valider le paiement d’une réservation.
+	 * Change le statut à "PAID" et enregistre la date de paiement.
+	 */
+	public function pay() {
+		if ($this->status === 'CART') {
+			// On simule un paiement ici
+			$this->status = "PAID";
+			$this->paidAt = new DateTime(); // date actuelle
+		}
+	}
 
-        //methode pour chnager le statut de la résa 
-         function cancel()
-         {
-            if ($this->  status==="CART"){ //paiment par CART 
-                $this-> status === " CANCELLED";//Annulation en carte uniquement 
-                $this-> cancelDate = New DateTime(); //date de l'annulation de la résa 
+	/**
+	 * Méthode pour laisser un commentaire après paiement.
+	 * Seules les réservations "PAID" peuvent recevoir un commentaire.
+	 */
+	public function leaveComment($userComment) {
+		if ($this->status === "PAID") {
+			$this->comment = $userComment;
+			$this->commentedAt = new DateTime(); // date actuelle
+		}
+	}
 
-            }
-         }
-        
-      
-
-// objet basé sur la classe Reservation / instance de classe Reservation
-// il contient toutes les propriétés de la classe
-
-$name = "Enzo";
-$place = "Paris 16";
-$start = new DateTime('2025-04-04');
-$end = new DateTime('2025-04-05');
-$cleaning = false;
-
-$reservation = new Reservation($name , $place, $start, $end, $cleaning);
-
-       
-           
-        // Affichage de l'objet complet
-        var_dump($this);  
-
-?>
+}
