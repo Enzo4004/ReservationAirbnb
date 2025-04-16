@@ -2,7 +2,6 @@
 // Je récupère la réservation créée par l'utilisateur si elle existe et la stocke dans une variable
 $reservationForUser = findReservationForUser();
 
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
      try {
  

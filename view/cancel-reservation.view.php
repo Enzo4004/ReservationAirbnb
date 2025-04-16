@@ -34,7 +34,7 @@
 		<!-- Résumé de la réservation si il y en a une et permet de vérifier si une variable est un objet et si cet objet est une instance d'une classe précise 
          (ici instanceof vérifie si "reservationForUser" est un objet et si "reservationForUser" est une instance
          de la classe "Reservation") -->
-		<?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>		
+		<?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>
 
 			<div>
 				<p>Récap de la réservation :</p>
@@ -43,16 +43,10 @@
 				<p>Dates : <?php echo $reservationForUser->startDate->format('d-m-y'); ?> / <?php echo $reservationForUser->endDate->format('d-m-y'); ?></p>
 				<p>Prix total : <?php echo $reservationForUser->totalPrice; ?></p>
 				<p>Option de ménage ? : <?php echo $reservationForUser->cleaningOption ? "oui" : "non"; ?></p>
-				<p>Statut : "<?php echo $reservationForUser->status ?></p> 
+				<p>Statut : "<?php echo $reservationForUser->status ?></p>
 			</div>
 
 		<?php } ?>
-
-		<form method="POST">
-
-			<button type="submit">Annuler la réservation</button>
-
-		</form>
 
 		<?php ?>
 
