@@ -10,7 +10,8 @@
 	</head>
 
 	<body>
-
+		<?php require_once("../partial/header.php")?>
+		
 		<header>
 
 			<nav>
@@ -101,13 +102,14 @@
 					</p>
 
 				</div>
-
+				<?php
+				}
+					?>
 
 			<?php
-
-			}
+				require_once("../controllers/pay-reservation.controller.php")			
 			?>
-
+	
 
 		</main>
 

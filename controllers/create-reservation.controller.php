@@ -40,9 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 
-    // Appelle la fonction findReservationForUser() pour récupérer la réservation stockée en session,
-    // et la stocke dans la variable $reservationForUser pour l'utiliser plus loin dans le code
-    $reservationForUser = findReservationForUser();
+   
 
 
 
@@ -53,6 +51,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Construction du message de confirmation avec le prix calculé automatiquement par la classe
     $message = "Votre réservation est confirmée, au prix de " . $reservation->totalPrice;
 }
+     // Appelle la fonction findReservationForUser() pour récupérer la réservation stockée en session,
+    // et la stocke dans la variable $reservationForUser pour l'utiliser plus loin dans le code
+  
+    $reservationForUser = findReservationForUser();
 
     // Inclusion de la vue qui affiche le formulaire et le message de confirmation
     require_once('../view/create-reservation.view.php');
