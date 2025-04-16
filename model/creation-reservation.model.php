@@ -86,7 +86,10 @@ class Reservation
 			// On simule un paiement ici
 			$this->status = "PAID";
 			$this->paidAt = new DateTime(); // date actuelle
+		} else {
+			throw new Exception("La réservation sera annulé seulement si le statut est en PAID ou CART ");
 		}
+		
 	}
 
 	/**
