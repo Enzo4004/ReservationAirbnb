@@ -4,9 +4,9 @@
 require_once('../config.php');
 
 // Inclusion du fichier contenant le modèle de création de réservation
-require_once('../model/creation-Reservation.model.php');
+require_once('../model/creation-reservation.model.php');
 //Inclusion du fichiee contenant le systeme d'enregistrement des réservations .
-require_once('../model/Reservation.repository.php');
+require_once('../model/reservation.repository.php');
 
 // Initialisation resa=null
 $reservation = null;
@@ -26,11 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Vérification si l'option "nettoyage" a été sélectionnée dans le formulaire
     // Si l'option est cochée, la valeur "on" est envoyée => on la convertit en booléen
-    if ($_POST['cleaning-option'] === "on") {
-        $cleaningOption = true;
-    } else {
-        $cleaningOption = false;
-    }
+    $cleaningOption = isset($_POST['cleaningOption']) && $_POST['cleaningOption'] === "on" ? true : false;
 
     try {
         // je créé une réservation : une instance de classe, en lui envoyant les données attendues

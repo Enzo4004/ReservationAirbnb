@@ -34,7 +34,7 @@
 		<!-- Résumé de la réservation si il y en a une et permet de vérifier si une variable est un objet et si cet objet est une instance d'une classe précise 
          (ici instanceof vérifie si "reservationForUser" est un objet et si "reservationForUser" est une instance
          de la classe "Reservation") -->
-		<?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>
+		<?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>		
 
 			<div>
 				<p>Récap de la réservation :</p>
