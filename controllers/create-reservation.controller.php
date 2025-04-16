@@ -58,5 +58,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $message = "Votre réservation est confirmée, au prix de " . $reservation->totalPrice;
 }
 
-// Inclusion de la vue qui affiche le formulaire et le message de confirmation
-require_once('../view/create-reservation.view.php');
+    // Inclusion de la vue qui affiche le formulaire et le message de confirmation
+    require_once('../view/create-reservation.view.php');
