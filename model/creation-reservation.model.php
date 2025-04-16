@@ -62,6 +62,9 @@ class Reservation
 
 		// Statut initial de la réservation
 		$this->status = "CART";
+		
+		// Statut initial de commentaires (avis)
+		$this->status = "COMMENTED";
 	}
 
 	/**
@@ -77,20 +80,23 @@ class Reservation
 	}
 
 	/**
-	 * Méthode pour valider le paiement d’une réservation.
-	 * Change le statut à "PAID" et enregistre la date de paiement.
-	 */
-	public function pay()
-	{
-		if ($this->status === 'CART') {
-			// On simule un paiement ici
-			$this->status = "PAID";
-			$this->paidAt = new DateTime(); // date actuelle
-		} else {
-			throw new Exception("La réservation sera annulé seulement si le statut est en PAID ou CART ");
-		}
-		
-	}
+
+ * Méthode pour valider le paiement d’une réservation.
+ * Change le statut à "PAID" et enregistre la date de paiement.
+ *
+ * @throws Exception si le statut n'est pas "CART".
+ */
+public function pay()
+{
+    if ($this->status === 'CART') {
+        // Simulation du paiement
+        $this->status = "PAID";
+        $this->paidAt = new DateTime(); // date actuelle
+    } else {
+        throw new Exception("Le paiement ne peut être effectué que si le statut est 'CART'.");
+    }
+}
+
 
 	/**
 	 * Méthode pour laisser un commentaire après paiement.

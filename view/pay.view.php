@@ -1,6 +1,6 @@
 <?php 
 // Inclusion du header commun à toutes les pages (menu, styles, etc.)
-require_once("../partial/header.php")
+require_once("../view/partial/header.php")
 ?>
 
 <?php if (isset($bookingForUser)) { // Vérifie si une réservation a été trouvée pour l'utilisateur ?>

@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<?php require_once ("../partial/header.php") ?>
+<?php require_once ("../view/partial/header.php") ?>
 	<header>
 
 		<nav>
@@ -26,17 +26,18 @@
 
 		<h1>Annuler une réservation</h1>
 
-		<?php if (isset($errorMessage)) { ?>
+		<?php if (isset($error)) { ?>
 			<!-- Message d'erreur si il y en a -->
 			<div>
-				<h3><?php echo $errorMessage; ?></h3>
+				<h3><?php echo $error; ?></h3>
 			</div>
 		<?php } ?>
 
 		<!-- Résumé de la réservation si il y en a une et permet de vérifier si une variable est un objet et si cet objet est une instance d'une classe précise 
          (ici instanceof vérifie si "reservationForUser" est un objet et si "reservationForUser" est une instance
          de la classe "Reservation") -->
-		<?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>
+		 <?php if (!is_null($reservationForUser) && $reservationForUser instanceof Reservation) { ?>
+
 
 			<div>
 				<p>Récap de la réservation :</p>

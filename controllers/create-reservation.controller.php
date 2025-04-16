@@ -12,17 +12,43 @@ require_once('../model/reservation.repository.php');
 $reservation = null;
 // varibale error qui a pour valeur null        
 $error = null;
+$reservation = null;
+$error = null;
 
-// Vérification que le formulaire a bien été soumis en méthode POST
+// Vérifie si le formulaire a été envoyé en méthode POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
-    // Récupération des données envoyées par l'utilisateur via le formulaire
-    $name = $_POST['name'];         // Nom de la personne qui réserve
-    $place = $_POST['place'];       // Lieu de réservation
+    // Récupération des valeurs envoyées par l'utilisateur
+    // On utilise l'opérateur ?? pour donner une valeur "null" si la donnée n'est pas envoyée
+    $name = $_POST['name'] ?? null;      // Nom de la personne
+    $place = $_POST['place'] ?? null;    // Lieu choisi
+
+    try {
+        // Vérifie si les champs de date ne sont pas vides avant de créer les objets DateTime
+        $startDate = !empty($_POST['start-date']) ? new DateTime($_POST['start-date']) : null;
+        $endDate = !empty($_POST['end-date']) ? new DateTime($_POST['end-date']) : null;
+
+        // Vérifie si l'option de ménage a été cochée
+        // Si la case est cochée, $_POST['cleaning-option'] vaut "on"
+        // Sinon, la clé n'existe même pas, donc on utilise isset() pour vérifier
+        $cleaningOption = isset($_POST['cleaning-option']) && $_POST['cleaning-option'] === "on";
+
+        // Création d'une nouvelle réservation avec les données reçues
+        // La classe Reservation doit accepter ces paramètres dans son constructeur
+        $reservation = new Reservation($name, $place, $startDate, $endDate, $cleaningOption);
+
+        // Sauvegarde de la réservation, par exemple en session (fonction personnalisée)
+        persistReservation($reservation);
+
+    } catch (Exception $e) {
+        // Si une erreur survient (ex: mauvaise date), on la stocke dans $error
+        $error = "Une erreur est survenue : " . $e->getMessage();
+    }
 
     // Conversion des dates reçues en objets DateTime (plus pratique pour le traitement)
-    $startDate = new DateTime($_POST['start-date']);  // Date de début
-    $endDate = new DateTime($_POST['end-date']);      // Date de fin
+    $startDate = isset($_POST['start-date']) ? new DateTime($_POST['start-date']) : null;//date ded début 
+    $endDate = isset($_POST['end-date']) ? new DateTime($_POST['end-date']) : null; // date de fin 
+
 
     // Vérification si l'option "nettoyage" a été sélectionnée dans le formulaire
     // Si l'option est cochée, la valeur "on" est envoyée => on la convertit en booléen
@@ -40,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 
 
-   
+
 
 
 
@@ -51,10 +77,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Construction du message de confirmation avec le prix calculé automatiquement par la classe
     $message = "Votre réservation est confirmée, au prix de " . $reservation->totalPrice;
 }
-     // Appelle la fonction findReservationForUser() pour récupérer la réservation stockée en session,
-    // et la stocke dans la variable $reservationForUser pour l'utiliser plus loin dans le code
-  
-    $reservationForUser = findReservationForUser();
+// Appelle la fonction findReservationForUser() pour récupérer la réservation stockée en session,
+// et la stocke dans la variable $reservationForUser pour l'utiliser plus loin dans le code
 
-    // Inclusion de la vue qui affiche le formulaire et le message de confirmation
-    require_once('../view/create-reservation.view.php');
+$reservationForUser = findReservationForUser();
+
+// Inclusion de la vue qui affiche le formulaire et le message de confirmation
+require_once('../view/create-reservation.view.php');
