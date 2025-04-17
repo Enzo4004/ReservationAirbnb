@@ -29,7 +29,7 @@
 		<?php if (isset($error)) { ?>
 			<!-- Message d'erreur si il y en a -->
 			<div>
-				<h3><?php echo $error; ?></h3>
+				<h3><?php echo $error; ?></h3>	
 			</div>
 		<?php } ?>
 
