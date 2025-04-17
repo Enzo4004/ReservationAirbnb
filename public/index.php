@@ -12,7 +12,7 @@
  // ensuite je fais mon rooutage  avec des if
  //ex: si on visite /Projet_Reservation/public/ (l'user ne met rien à la fin),
  // ça charge home-controller.php
- if ($endUri === "") {
+ if ($endUri === "Accueil") {
      require_once('../controller/home-controler.php');
  
  } else if ($endUri === "nouvelle-reservation") {

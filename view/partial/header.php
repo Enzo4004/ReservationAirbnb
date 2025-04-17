@@ -17,9 +17,9 @@
 <header>
     <nav>
         <ul>
-            <li><a href="create-reservation.controller.php">Créer</a></li>
-            <li><a href="pay-reservation.controller.php">Payer</a></li>
-            <li><a href="cancel-reservation.controller.php">Annuler</a></li>
+            <li><a href="../controllers/create-reservation.controller.php">Créer</a></li>
+            <li><a href="../controllers/pay-reservation.controller.php">Payer</a></li>
+            <li><a href="../controllers/cancel-reservation.controller.php">Annuler</a></li>
         </ul>
     </nav>
 </header>
