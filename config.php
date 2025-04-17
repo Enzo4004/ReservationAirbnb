@@ -3,6 +3,8 @@
  ini_set('display_errors', 1);
  ini_set('display_startup_errors', 1);
  error_reporting(E_ALL);
+
+ //En gros la function "connectToDB() sert a connecté notre base de données a notre projet en cours. 
  function connectToDB() {
 	try {
 		// Création d'une nouvelle instance PDO pour se connecter à la base de données MySQL
